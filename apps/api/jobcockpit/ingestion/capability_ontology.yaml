@@ -1,0 +1,348 @@
+schema_version: 1
+technologies:
+  - canonical_name: Python
+    entity_type: language
+    patterns: ['\bpython\b']
+    domains: [software, data]
+  - canonical_name: TypeScript
+    entity_type: language
+    patterns: ['\btypescript\b']
+    domains: [software]
+  - canonical_name: JavaScript
+    entity_type: language
+    patterns: ['\bjavascript\b']
+    domains: [software]
+  - canonical_name: Java
+    entity_type: language
+    patterns: ['\bjava\b']
+    domains: [software]
+  - canonical_name: C#
+    entity_type: language
+    patterns: ['(?<!\w)c#(?!\w)']
+    domains: [software]
+  - canonical_name: C++
+    entity_type: language
+    patterns: ['(?<!\w)c\+\+(?!\w)']
+    domains: [software, hardware_engineering]
+  - canonical_name: Go
+    entity_type: language
+    patterns: ['(?<![-\w])go(?![-\w])']
+    non_technology_patterns:
+      - '\bgo(?:[-\s]+to[-\s]+market)\b'
+      - '\bgo\s*/\s*no[-\s]+go\b'
+      - '\bgo[-\s]+forward\b'
+    domains: [software]
+    requires_context: true
+  - canonical_name: Rust
+    entity_type: language
+    patterns: ['\brust\b']
+    non_technology_patterns:
+      - '\brust(?:[-\s]+(?:control|inhibitors?|prevention|proofing|removal|resistance|resistant))\b'
+    domains: [software]
+    requires_context: true
+  - canonical_name: R
+    entity_type: language
+    patterns: ['(?<![A-Za-z0-9&])R(?![A-Za-z0-9&])']
+    domains: [data, research]
+    requires_context: true
+  - canonical_name: PHP
+    entity_type: language
+    patterns: ['\bphp\b']
+    domains: [software]
+  - canonical_name: .NET
+    entity_type: framework
+    patterns: ['(?<!\w)(?:dotnet|\.net|asp\.net)(?!\w)']
+    domains: [software]
+  - canonical_name: Laravel
+    entity_type: framework
+    patterns: ['\blaravel\b']
+    domains: [software]
+  - canonical_name: Vue
+    entity_type: framework
+    patterns: ['\bvue(?:\.js|js)?\b']
+    domains: [software]
+  - canonical_name: React
+    entity_type: framework
+    patterns: ['\breact(?:\.js|js)?\b']
+    domains: [software]
+    requires_context: true
+  - canonical_name: Angular
+    entity_type: framework
+    patterns: ['\bangular\b']
+    non_technology_patterns:
+      - '\bangular(?:[-\s]+(?:acceleration|alignment|deflection|deviation|displacement|frequency|measurement|momentum|position|resolution|rotation|velocity))\b'
+      - '\bangular[-\s]+contact(?:[-\s]+bearings?)?\b'
+    domains: [software]
+    requires_context: true
+  - canonical_name: Next.js
+    entity_type: framework
+    patterns: ['\bnext\.js\b']
+    domains: [software]
+  - canonical_name: Node.js
+    entity_type: platform
+    patterns: ['\bnode\.js\b']
+    domains: [software]
+  - canonical_name: FastAPI
+    entity_type: framework
+    patterns: ['\bfastapi\b']
+    domains: [software]
+  - canonical_name: Django
+    entity_type: framework
+    patterns: ['\bdjango\b']
+    domains: [software]
+  - canonical_name: Flask
+    entity_type: framework
+    patterns: ['\bflask\b']
+    non_technology_patterns:
+      - '\bflask(?:[-\s]+(?:calibration|cleaning|handling|inspection|preparation|sterilization|verification|washing))\b'
+      - '\b(?:conical|erlenmeyer|round[-\s]+bottom|volumetric)\s+flask\b'
+    domains: [software]
+    requires_context: true
+  - canonical_name: Spring
+    entity_type: framework
+    patterns: ['\bspring(?:\s+boot)?\b']
+    non_technology_patterns:
+      - '\bspring(?:[-\s]+(?:loaded|mechanisms?))\b'
+      - '(?-i:\bspring\b)[-\s]+design\b'
+      - '(?-i:\bspring\b)[-\s]+(?:fatigue(?:[-\s]+testing)?|selection)\b'
+      - '\bspring[-\s]+(?:assembl(?:y|ies)|coils?|compression|constants?|forces?|rates?|stiffness|tension)\b'
+      - '\b(?:coil|compression|extension|gas|helical|leaf|torsion)\s+spring\b'
+    domains: [software]
+    requires_context: true
+    context_free_patterns: ['\bspring\s+boot\b']
+  - canonical_name: MySQL
+    entity_type: platform
+    patterns: ['\bmysql\b']
+    domains: [data, software]
+  - canonical_name: PostgreSQL
+    entity_type: platform
+    patterns: ['\bpostgres(?:ql)?\b']
+    domains: [data, software]
+  - canonical_name: SQL
+    entity_type: language
+    patterns: ['\bsql\b']
+    domains: [data]
+  - canonical_name: MongoDB
+    entity_type: platform
+    patterns: ['\bmongodb\b']
+    domains: [data, software]
+  - canonical_name: Redis
+    entity_type: platform
+    patterns: ['\bredis\b']
+    domains: [data, software]
+  - canonical_name: Kafka
+    entity_type: platform
+    patterns: ['\b(?:apache\s+)?kafka\b']
+    domains: [data, software]
+  - canonical_name: RabbitMQ
+    entity_type: platform
+    patterns: ['\brabbitmq\b']
+    domains: [software]
+  - canonical_name: AWS
+    entity_type: platform
+    patterns: ['\b(?:aws|amazon\s+web\s+services)\b']
+    domains: [software, data, operations]
+  - canonical_name: Azure
+    entity_type: platform
+    patterns: ['\b(?:microsoft\s+)?azure\b']
+    domains: [software, data, operations]
+  - canonical_name: GCP
+    entity_type: platform
+    patterns: ['\b(?:gcp|google\s+cloud(?:\s+platform)?)\b']
+    domains: [software, data, operations]
+  - canonical_name: Terraform
+    entity_type: tool
+    patterns: ['\bterraform\b']
+    domains: [software, operations]
+  - canonical_name: Git
+    entity_type: tool
+    patterns: ['\bgit\b']
+    domains: [software]
+  - canonical_name: Linux
+    entity_type: platform
+    patterns: ['\blinux\b']
+    domains: [software, operations]
+  - canonical_name: Docker
+    entity_type: tool
+    patterns: ['\bdocker\b']
+    domains: [software, operations]
+  - canonical_name: Jenkins
+    entity_type: platform
+    patterns: ['\bjenkins\b']
+    domains: [software, operations]
+  - canonical_name: Kubernetes
+    entity_type: platform
+    patterns: ['\bkubernetes\b|\bk8s\b']
+    domains: [software, operations]
+  - canonical_name: Spark
+    entity_type: platform
+    patterns: ['\b(?:apache\s+)?spark\b']
+    domains: [data]
+    context_free_patterns: ['\bapache\s+spark\b']
+    title_requires_domain_context: true
+  - canonical_name: Airflow
+    entity_type: platform
+    patterns: ['\b(?:apache\s+)?airflow\b']
+    domains: [data]
+    context_free_patterns: ['\bapache\s+airflow\b']
+    title_requires_domain_context: true
+  - canonical_name: dbt
+    entity_type: tool
+    patterns: ['\bdbt\b']
+    domains: [data]
+  - canonical_name: Snowflake
+    entity_type: platform
+    patterns: ['\bsnowflake\b']
+    domains: [data]
+  - canonical_name: PyTorch
+    entity_type: framework
+    patterns: ['\bpytorch\b']
+    domains: [data, software, research]
+  - canonical_name: TensorFlow
+    entity_type: framework
+    patterns: ['\btensorflow\b']
+    domains: [data, software, research]
+  - canonical_name: Tableau
+    entity_type: tool
+    patterns: ['\btableau\b']
+    domains: [data, general_business]
+  - canonical_name: Power BI
+    entity_type: tool
+    patterns: ['\bpower\s*bi\b']
+    domains: [data, general_business]
+  - canonical_name: Microsoft Power Platform
+    entity_type: platform
+    patterns: ['\b(?:microsoft\s+)?power\s+platform\b']
+    domains: [data, software, general_business]
+  - canonical_name: Power Automate
+    entity_type: tool
+    patterns: ['\bpower\s+automate\b']
+    domains: [data, software, general_business]
+  - canonical_name: Power Apps
+    entity_type: platform
+    patterns: ['\bpower\s+apps?\b']
+    domains: [software, general_business]
+  - canonical_name: VBA
+    entity_type: language
+    patterns: ['\bvba\b']
+    domains: [software, data, general_business]
+  - canonical_name: Power Query
+    entity_type: tool
+    patterns: ['\bpower\s+query\b']
+    domains: [data, general_business]
+  - canonical_name: Excel Macros
+    entity_type: tool
+    patterns: ['\bexcel\s+macros?\b']
+    domains: [data, general_business]
+  - canonical_name: Excel
+    entity_type: tool
+    include_in_tech_stack: false
+    patterns:
+      - '\bmicrosoft\s+excel\b'
+      - '\bexcel\b'
+    non_technology_patterns:
+      - '\b(?:abilities|ability|aptitude|capabilities|capability|competence|competencies|competency|expertise|skills?|talents?)\b[^.;:\n]{0,40}\bto\s+excel\b'
+    context_free_patterns: ['\bmicrosoft\s+excel\b']
+    capability_context_patterns:
+      - '\bdata\s+analysis\s*\([^)]*\bexcel\b'
+      - '\bdata\s+tools?\s*\([^)]*\bexcel\b'
+      - '\b(?:microsoft|ms)\s+office(?:\s+(?:applications?|skills?|suite))?\s*\([^)]*\bexcel\b'
+      - '\b(?:spreadsheet\s+management|project\s+management\s+tools?)\b[^.;\n]{0,80}\bexcel\b'
+      - '\b(?:proficien(?:cy|t)|skills?|knowledge|experience)\b[^.;:\n]{0,80}\b(?:including|such\s+as)\b[^.;:\n]{0,40}\bexcel\b'
+      - '\b(?:competence|experience|familiarity|knowledge|proficien(?:cy|t))\b[^.;:\n]{0,100}\bexcel\b'
+      - '\bexperienced\b[^.;:\n]{0,100}\bexcel\b'
+      - '\boffice\s+tools?\s*:[^.;\n]{0,80}\bexcel\b'
+      - '\b(?:microsoft|ms)\s+office(?:\s+(?:applications?|skills?|suite))?\b[^.;\n]{0,100}\bexcel\b'
+      - '\b(?:data\s+tools?|software\s+programs?)\b[^.;\n]{0,100}\bexcel\b'
+      - '\bexcel\s*/\s*csv\s+files?\b'
+      - '\b(?:advanced|strong)\s+excel\b'
+      - '\bexcel[-\s]+based\b'
+      - '\bexcel\s*\([^)]*\b(?:formulas?|macros?|pivot|vlookup)\b'
+      - '\bexcel\s+(?:analysis\s+tools?|dashboards?|models?|reports?|templates?)\b'
+      - '\b(?:analysis|forecasts?|models?|reports?|spreadsheets?|workbooks?)\s+(?:in|using|with)\s+excel\b'
+      - '\b(?:exports?|exported|exporting|saves?|saved|saving)\s+(?:(?:a|an|the|our|your)\s+)?(?:[a-z][\w''-]*\s+){0,3}(?:analys(?:is|es)|charts?|data|documents?|files?|forecasts?|models?|reports?|results?|spreadsheets?|tables?|workbooks?)\s+(?:to|as)\s+excel\b'
+      - '\b(?:writes?|wrote|written|writing)\s+(?:(?:a|an|the|our|your)\s+)?(?:[a-z][\w''-]*\s+){0,3}(?:analys(?:is|es)|charts?|data|documents?|files?|forecasts?|models?|reports?|results?|spreadsheets?|tables?|workbooks?)\s+as\s+excel\b'
+      - '\b(?:writes?|wrote|written|writing)\s+(?:(?:a|an|the|our|your)\s+)?(?:[a-z][\w''-]*\s+){0,3}(?:analys(?:is|es)|charts?|data|documents?|files?|forecasts?|models?|reports?|results?|spreadsheets?|tables?|workbooks?)\s+to\s+excel\b(?!\s+(?:at|in)\s+(?:(?:a|an|the|this|that|your|our)\s+)?(?:assignment|career|job|position|profession|role|work)\b|\s+[a-z][\w''-]*ly\b)'
+      - '\b(?:exports?|exported|exporting|saves?|saved|saving)\s+(?:to|as)\s+excel\b'
+    domains: [finance, operations, general_business]
+    requires_context: true
+  - canonical_name: Cadence Allegro
+    entity_type: tool
+    patterns: ['\bcadence\s+allegro\b']
+    domains: [hardware_engineering]
+  - canonical_name: ECAD
+    entity_type: tool
+    patterns: ['\becad\b']
+    domains: [hardware_engineering]
+  - canonical_name: FPGA
+    entity_type: platform
+    patterns: ['\bfpga\b']
+    domains: [hardware_engineering]
+  - canonical_name: PCB Design
+    entity_type: method
+    patterns: ['\bpcb\b|\bprinted\s+circuit\s+board\b']
+    domains: [hardware_engineering]
+  - canonical_name: Oscilloscope
+    entity_type: tool
+    patterns: ['\boscilloscopes?\b']
+    domains: [hardware_engineering]
+  - canonical_name: Verilog
+    entity_type: language
+    patterns: ['\bverilog\b']
+    domains: [hardware_engineering]
+  - canonical_name: VHDL
+    entity_type: language
+    patterns: ['\bvhdl\b']
+    domains: [hardware_engineering]
+  - canonical_name: Signal Integrity
+    entity_type: method
+    patterns: ['\bsignal\s+integrity\b']
+    domains: [hardware_engineering]
+  - canonical_name: High-Speed Digital
+    entity_type: method
+    patterns: ['\bhigh[-\s]speed\b[^\n.]*\bdigital\b|\bdigital\b[^\n.]*\bhigh[-\s]speed\b']
+    domains: [hardware_engineering]
+  - canonical_name: Analog Circuits
+    entity_type: domain
+    patterns: ['\banalog\b']
+    domains: [hardware_engineering]
+  - canonical_name: DC/DC Power Circuits
+    entity_type: domain
+    patterns: ['\bdc\s*[\\/]\s*dc\b|\bdc[-\s]dc\b']
+    domains: [hardware_engineering]
+  - canonical_name: Op-Amp
+    entity_type: tool
+    patterns: ['\bop[-\s]amp\b']
+    domains: [hardware_engineering]
+  - canonical_name: Transmission Line Theory
+    entity_type: method
+    patterns: ['\btransmission\s+line\s+theory\b']
+    domains: [hardware_engineering]
+  - canonical_name: Optical Measurements
+    entity_type: method
+    patterns: ['\boptical\s+measurements?\b']
+    domains: [hardware_engineering]
+  - canonical_name: Test Equipment
+    entity_type: tool
+    patterns: ['\btest\s+(?:and\s+measurement\s+)?equipment\b']
+    domains: [hardware_engineering]
+  - canonical_name: SIEM
+    entity_type: platform
+    patterns: ['\bsiem\b']
+    domains: [cybersecurity]
+  - canonical_name: Splunk
+    entity_type: platform
+    patterns: ['\bsplunk\b']
+    domains: [cybersecurity]
+  - canonical_name: Wireshark
+    entity_type: tool
+    patterns: ['\bwireshark\b']
+    domains: [cybersecurity]
+  - canonical_name: Selenium
+    entity_type: framework
+    patterns: ['\bselenium\b']
+    domains: [quality_assurance, software]
+  - canonical_name: Playwright
+    entity_type: framework
+    patterns: ['\bplaywright\b']
+    domains: [quality_assurance, software]

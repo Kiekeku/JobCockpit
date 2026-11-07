@@ -1,0 +1,2 @@
+"""Document generation and validation."""
+

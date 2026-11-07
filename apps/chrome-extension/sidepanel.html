@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>JobCockpit application companion</title>
+    <link rel="stylesheet" href="sidepanel.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="brand"><span class="brand-mark" aria-hidden="true">JC</span><div><strong>JobCockpit</strong><span class="eyebrow">Application companion</span></div></div>
+      <span id="build" class="build" title="Extension version and build">v0.3.3</span>
+    </header>
+    <nav class="tabs" aria-label="Companion sections">
+      <button id="tabApplication" class="tab active" aria-current="page">Application</button>
+      <button id="tabCapture" class="tab">Capture posting</button>
+      <button id="tabMemory" class="tab">My facts</button>
+      <button id="tabSettings" class="tab">Settings</button>
+    </nav>
+    <div id="status" class="status" role="status" aria-live="polite">Connecting to JobCockpit…</div>
+    <main>
+      <section id="applicationView">
+        <div class="page-context"><span class="eyebrow">Current browser page</span><strong id="pageTitle">Open an application page</strong><span id="pageHost" class="muted"></span></div>
+        <fieldset id="workflow">
+          <section class="setup">
+            <label for="jobSearch">Which job are you applying for?</label>
+            <div class="inline"><input id="jobSearch" type="search" placeholder="Search saved company or role" /><button id="searchJobs" class="secondary compact">Find</button></div>
+            <label for="jobSelect" class="sr-only">Saved job</label><select id="jobSelect"><option value="">Choose a saved job</option></select>
+            <p id="jobSummary" class="muted"></p>
+            <label class="check"><input id="jobConfirmed" type="checkbox" /><span>This is the job on the application page.</span></label>
+            <button id="scan" class="primary wide">Scan current page</button>
+            <p class="hint">After scanning, this panel follows the application's next steps automatically while open. Review each step before filling. Custom controls require manual completion.</p>
+          </section>
+          <section id="reviewWorkspace" hidden>
+            <details id="sourceDetails" class="sources">
+              <summary>Context for your answers <span id="sourceCount" class="muted"></span></summary>
+              <p class="hint">Drafts use this job, your saved profile, and the experience notes selected below. Private or excluded notes are not offered.</p>
+              <details><summary>Saved profile facts</summary><dl id="profileFacts"></dl><a id="profileLink" target="_blank" rel="noreferrer">Review profile in JobCockpit ↗</a></details>
+              <details><summary>Confirmed personal facts for this job</summary><div id="contextFacts"></div></details>
+              <div class="source-actions"><button id="selectSources" class="text-button">Select available notes</button><button id="clearSources" class="text-button">Clear selection</button></div>
+              <div id="evidenceList" class="evidence-list"></div>
+              <label for="instructions">Additional facts or preferences for this application</label>
+              <textarea id="instructions" rows="3" placeholder="For example: I can work May 3–August 27, and I prefer a four-month term."></textarea>
+            </details>
+            <div class="draft-actions"><button id="draft" class="primary wide">Draft answers with Astra</button><p class="hint">Uses the context above through your configured Codex account. Drafting again resets this page's approvals.</p></div>
+            <div class="review-heading"><h1>Review your answers</h1><span id="reviewCount" class="muted"></span></div>
+            <p id="scanWarnings" class="hint"></p>
+            <div id="questions"></div>
+            <details id="receiptDetails"><summary>What changed on the page</summary><div id="receipts"></div></details>
+            <div class="privacy-actions"><button id="forgetAnswers" class="text-button">Forget saved answers for this job</button><button id="clearReview" class="text-button">Clear this review</button></div>
+            <button id="learnAnswers" class="secondary wide">Learn from my answers</button>
+            <p class="hint">Capture completed answers from this step and your panel edits, then choose what Astra may interpret. Nothing becomes a remembered fact until you confirm it.</p>
+          </section>
+          <div id="emptyState" class="empty-state"><span class="step-number">1</span><h2>Start with the actual questions.</h2><p>Choose the matching job, then scan the application. You can review, edit, approve or copy each answer before anything changes on the page.</p></div>
+        </fieldset>
+      </section>
+      <section id="captureView" hidden>
+        <h1>Save a job posting</h1><p>Capture the posting you have open and follow its import into JobCockpit.</p>
+        <button id="capturePosting" class="primary wide">Capture current posting</button>
+        <div id="captureStatus" class="capture-status" aria-live="polite"></div>
+        <button id="retryCapture" class="secondary wide" hidden>Retry this capture</button>
+        <a id="capturedJob" class="button-link" target="_blank" rel="noreferrer" hidden>Open saved job ↗</a>
+      </section>
+      <section id="settingsView" hidden>
+        <h1>Connections and access</h1>
+        <label for="apiBaseUrl">Local API URL</label><input id="apiBaseUrl" type="url" spellcheck="false" />
+        <label for="webBaseUrl">JobCockpit web URL</label><input id="webBaseUrl" type="url" spellcheck="false" />
+        <label for="mockBaseUrl">Local test application URL</label><input id="mockBaseUrl" type="url" spellcheck="false" />
+        <button id="saveSettings" class="primary wide">Save connections</button>
+        <h2>Access to the current site</h2><p class="hint">Clicking the extension icon grants temporary access to that tab. If Chrome still blocks a scan, grant this site's origin explicitly.</p>
+        <button id="allowSite" class="secondary wide">Allow this site</button>
+        <p class="hint">No all-sites permission is requested. Form answers are kept in your local JobCockpit database; Chrome retains temporary review state for this browser session.</p>
+        <h2>Answer model</h2><p id="modelInfo">Astra through your configured Codex CLI.</p>
+      </section>
+      <section id="memoryView" hidden>
+        <h1>My personal facts</h1>
+        <p class="hint">Facts you confirmed can support future drafts within their stated scope. You can correct, expire or delete them here.</p>
+        <button id="refreshFacts" class="secondary wide">Refresh saved facts</button>
+        <section id="learningWorkspace" hidden>
+          <h2>Learn from completed answers</h2>
+          <p id="learningStatus" class="hint" role="status"></p>
+          <div id="observedAnswers"></div>
+          <button id="suggestFacts" class="primary wide" hidden>Suggest facts from selected answers</button>
+          <div id="factProposals"></div>
+          <button id="discardLearning" class="text-button">Discard these proposals</button>
+        </section>
+        <h2>Saved knowledge</h2><div id="savedFacts"></div>
+      </section>
+    </main>
+    <footer id="fillBar" hidden><div class="footer-actions"><button id="fill" class="primary" disabled>Fill approved answers</button><button id="undo" class="secondary" disabled>Undo</button></div><p>Sites may save changes as you type. You navigate and submit yourself.</p></footer>
+    <script type="module" src="dist/sidepanel.js"></script>
+  </body>
+</html>

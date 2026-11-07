@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: astral-sh/setup-uv@v4
+      # Pytest also executes TypeScript helpers through Node.
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: mkdir -p var
+      - run: uv run alembic upgrade head
+      - run: pnpm --filter @jobcockpit/chrome-extension build
+      - run: uv run playwright install --with-deps chromium
+      # Pytest includes the complete golden parser corpus and focused CLI tests.
+      - run: uv run pytest -n auto
+      - run: uv run python scripts/privacy_scan.py .
+      - run: uv run python scripts/privacy_scan.py . --git-ref HEAD
+      - run: uv run python scripts/privacy_scan.py . --git-ref HEAD --history
+
+  frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build

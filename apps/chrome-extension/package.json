@@ -1,0 +1,14 @@
+{
+  "name": "@jobcockpit/chrome-extension",
+  "private": true,
+  "version": "0.3.3",
+  "scripts": {
+    "build": "node ../../scripts/build-extension.mjs",
+    "dev": "node ../../scripts/build-extension.mjs --watch",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.287",
+    "typescript": "^5.7.2"
+  }
+}

@@ -1,0 +1,2 @@
+"""JobCockpit backend package."""
+

@@ -1,0 +1,26 @@
+{
+  "name": "jobcockpit",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "cli": "node scripts/cli.mjs",
+    "python": "node scripts/python.mjs",
+    "build": "pnpm --filter @jobcockpit/web build && pnpm --filter @jobcockpit/chrome-extension build",
+    "dev": "node scripts/dev.mjs",
+    "dev:all": "node scripts/dev.mjs --extension",
+    "dev:mock": "node scripts/dev.mjs --mock",
+    "dev:web": "pnpm --filter @jobcockpit/web dev",
+    "dev:extension": "pnpm --filter @jobcockpit/chrome-extension dev",
+    "stop": "node scripts/stop.mjs",
+    "test": "node scripts/test.mjs",
+    "test:fast": "node scripts/test.mjs --fast",
+    "test:slow": "node scripts/test.mjs --slow",
+    "test:serial": "node scripts/test.mjs --serial",
+    "typecheck": "pnpm --filter @jobcockpit/web typecheck && pnpm --filter @jobcockpit/chrome-extension typecheck",
+    "extension:dev": "node scripts/extension-dev.mjs",
+    "extension:package": "pnpm --filter @jobcockpit/chrome-extension build && node scripts/python.mjs scripts/package_extension.py"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2"
+  }
+}
