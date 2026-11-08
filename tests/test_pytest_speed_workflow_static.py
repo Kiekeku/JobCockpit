@@ -10,7 +10,7 @@ def test_pytest_speed_workflow_is_documented_and_scripted():
     pyproject = tomllib.loads(Path("pyproject.toml").read_text(encoding="utf-8"))
     package = json.loads(Path("package.json").read_text(encoding="utf-8"))
     test_script = Path("scripts/test.mjs").read_text(encoding="utf-8")
-    readme = Path("README.md").read_text(encoding="utf-8")
+    guide = Path("docs/user-guide.md").read_text(encoding="utf-8")
     ci_workflow = Path(".github/workflows/ci.yml").read_text(encoding="utf-8")
 
     pytest_options = pyproject["tool"]["pytest"]["ini_options"]
@@ -41,10 +41,10 @@ def test_pytest_speed_workflow_is_documented_and_scripted():
         dependency.startswith("pytest-xdist")
         for dependency in pyproject["dependency-groups"]["dev"]
     )
-    assert "pnpm test:fast" in readme
-    assert "pnpm test:slow" in readme
-    assert "pnpm test:serial" in readme
-    assert "PYTEST_XDIST_WORKERS" in readme
+    assert "pnpm test:fast" in guide
+    assert "pnpm test:slow" in guide
+    assert "pnpm test:serial" in guide
+    assert "PYTEST_XDIST_WORKERS" in guide
     assert "/.pytest-tmp/" in Path(".gitignore").read_text(encoding="utf-8")
 
 

@@ -31,15 +31,15 @@ def test_extension_dev_script_builds_and_launches_dedicated_chrome_profile():
 
 def test_extension_setup_docs_include_one_command_dev_launcher():
     docs = Path("docs/chrome-extension.md").read_text(encoding="utf-8")
-    readme = Path("README.md").read_text(encoding="utf-8")
+    guide = Path("docs/user-guide.md").read_text(encoding="utf-8")
 
     assert "pnpm extension:dev" in docs
     assert "var/chrome-extension-dev-profile" in docs
     assert "--chrome" in docs
     assert "Manual fallback" in docs
-    assert "pnpm extension:dev" in readme
-    assert "Manual fallback" in readme
+    assert "pnpm extension:dev" in guide
+    assert "Manual fallback" in guide
     assert "http://localhost:3010" not in docs
-    assert "http://localhost:3010" not in readme
+    assert "http://localhost:3010" not in guide
     assert "JOBCOCKPIT_WEB_PORT" in docs
-    assert "JOBCOCKPIT_WEB_PORT" in readme
+    assert "JOBCOCKPIT_WEB_PORT" in guide

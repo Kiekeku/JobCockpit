@@ -14,9 +14,9 @@ RECOVERY_AWARE_MIGRATION_COMMAND = "pnpm --silent python scripts/migrate.py"
 RAW_ALEMBIC_COMMAND = "uv run alembic upgrade head"
 
 
-def test_status_reconciliation_readme_uses_recovery_aware_migration_wrapper():
-    readme = (REPOSITORY_ROOT / "README.md").read_text(encoding="utf-8")
-    section = readme.split("### Scheduled active-job status reconciliation", maxsplit=1)[1]
+def test_status_reconciliation_guide_uses_recovery_aware_migration_wrapper():
+    guide = (REPOSITORY_ROOT / "docs" / "user-guide.md").read_text(encoding="utf-8")
+    section = guide.split("### Scheduled active-job status reconciliation", maxsplit=1)[1]
     section = section.split("### 6. Chrome Extension Setup", maxsplit=1)[0]
 
     assert RECOVERY_AWARE_MIGRATION_COMMAND in section

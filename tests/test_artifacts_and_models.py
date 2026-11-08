@@ -1808,23 +1808,23 @@ def test_models_use_portable_json_type():
     assert " JSON," in source
 
 
-def test_readme_quick_start_runs_alembic_before_api_server():
-    readme = Path("README.md").read_text(encoding="utf-8")
+def test_user_guide_runs_alembic_before_api_server():
+    guide = Path("docs/user-guide.md").read_text(encoding="utf-8")
 
-    assert "mkdir -p var" in readme
-    assert readme.index("pnpm --silent python scripts/migrate.py") < readme.index(
+    assert "mkdir -p var" in guide
+    assert guide.index("pnpm --silent python scripts/migrate.py") < guide.index(
         "pnpm --silent python scripts/run_uvicorn_dev.py jobcockpit.api.main:app"
     )
 
 
-def test_readme_shell_examples_match_declared_fences():
-    readme = Path("README.md").read_text(encoding="utf-8")
+def test_user_guide_shell_examples_match_declared_fences():
+    guide = Path("docs/user-guide.md").read_text(encoding="utf-8")
 
-    for fence in readme.split("```bash")[1:]:
+    for fence in guide.split("```bash")[1:]:
         block = fence.split("```", 1)[0]
         assert "curl.exe" not in block
         assert " ^" not in block
-    assert "```powershell\nInvoke-RestMethod" in readme
+    assert "```powershell\nInvoke-RestMethod" in guide
 
 
 def test_ci_runs_alembic_upgrade_before_backend_tests():
